@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Transcriptomic Signature of Xeroderma Pigmentosum Based on Autoencoders for Molecular Diagnosis Assistance - Extended Abstract">
+    <title>Transcriptomic Signature of Xeroderma Pigmentosum</title>
+
+    <style>
+        :root {
+            --primary: #1f3a5f;
+            --secondary: #2f5d8a;
+            --light: #f5f7fa;
+            --gray: #6c757d;
+            --border: #d9dee5;
+            --text: #2b2b2b;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+       
+        header h1 {
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        header::before {
+            content: "";
+            display: block;
+            width: 900px; /* Ajuste a largura da imagem aqui */
+            height: 900px; /* Ajuste a altura da imagem aqui */
+            margin: 0 auto 20px auto; /* Centraliza a imagem e empurra o título para baixo */
+            
+            /* CAMINHO DA IMAGEM: substitua pelo nome correto do seu arquivo */
+            background-image: url('Poster imagem 1.png'); 
+            
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        header p {
+            font-size: 1.15rem;
+            opacity: 0.95;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            background: var(--white);
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-left: 5px solid var(--secondary);
+            padding-left: 12px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: var(--secondary);
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .figure-container {
+            text-align: center;
+        }
+
+        .figure-container img {
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            margin-bottom: 12px;
+        }
+
+        .caption {
+            color: var(--gray);
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .citation-box {
+            background: #f8fafc;
+            border-left: 4px solid var(--secondary);
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 30px;
+        }
+
+        footer a {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Transcriptomic Signature of Xeroderma Pigmentosum Based on Autoencoders for Molecular Diagnosis Assistance</h1>
+</header>
+
+<main>
+
+    <section>
+        <h2>Extended Abstract</h2>
+
+        <h3>INTRODUCTION</h3>
+        <p>
+            Xeroderma Pigmentosum (XP) is a rare autosomal recessive genodermatosis caused by defects in the nucleotide excision repair (NER) pathway, leading to extreme ultraviolet hypersensitivity. Clinical manifestations include progressive cutaneous, ocular, and neurological deterioration, along with a more than 10,000-fold increased risk of early skin cancers. Although genes such as XPA through XPG and XPV are known to be involved, molecular diagnosis remains challenging due to extensive clinical and genetic heterogeneity. RNA-seq transcriptomic data combined with artificial intelligence offer a promising avenue for identifying robust molecular biomarkers. Among AI approaches, autoencoders excel at unsupervised dimensionality reduction and can learn latent representations capable of flagging anomalous expression patterns.
+        </p>
+
+        <h3>OBJECTIVES</h3>
+        <p>
+            To develop and validate autoencoder-based computational models that identify transcriptomic signatures associated with XP, detect aberrant gene expression patterns, and evaluate their utility as an auxiliary molecular diagnostic tool.
+        </p>
+
+        <h3>METHODOLOGY</h3>
+        <p>
+            Public RNA-seq data from fibroblasts of healthy donors and patients with different XP subtypes were obtained from the Gene Expression Omnibus (GEO). After quality control, genes with zero variance were removed and expression values were normalized to the [0,1] interval. The training set consisted of a fraction of the control samples exclusively, while the remaining control samples and all XP samples formed the test set.
+        </p>
+
+        <p>
+            A deep autoencoder was implemented in PyTorch. The encoder comprised three dense layers that compressed the input into a 32-neuron latent space, followed by a symmetric decoder. ReLU activation was used in the intermediate layers and sigmoid in the output. Training employed mean squared error (MSE) loss, the Adam optimizer, and early stopping to prevent overfitting.
+        </p>
+
+        <p>
+            Anomaly detection relied on the reconstruction error of each sample: any test sample whose error exceeded a statistically defined threshold was flagged as having a pathological profile. Biological relevance of individual genes was estimated by comparing the mean per-gene reconstruction error between groups. Explainable Artificial Intelligence (XAI) techniques were later applied to interpret the latent features driving the classification.
+        </p>
+
+        <h3>EXPECTED RESULTS</h3>
+        <p>
+            We anticipate identifying a robust transcriptomic signature for XP, enriched in genes related to DNA repair, oxidative stress, and cell-cycle control. The latent representation learned by the autoencoder should yield a consistent separation between control and patient samples, enabling high-sensitivity detection of aberrant profiles. Furthermore, the model may function as a classifier by using both reconstruction error and latent vectors as discriminative descriptors. The XAI-guided interpretation is expected to pinpoint candidate genes as relevant biomarkers for early XP diagnosis, contributing to future translational applications in precision medicine and omics sciences.
+        </p>
+
+        <h3>FUTURE PERSPECTIVES</h3>
+        <p>
+            We plan to refine the autoencoder architecture by exploring denoising and variational autoencoders (VAEs) to increase the robustness of anomaly detection. Independent cohort validation and integration of multi-omics data (e.g., proteomics, methylation) are also planned to enhance biological interpretability. Ultimately, the optimized model and the list of biomarker genes will be made publicly available on our research group’s website, enabling the scientific community to reproduce and apply the tool for Xeroderma Pigmentosum molecular diagnosis.
+        </p>
+    </section>
+
+    <section>
+        <h2>Figures</h2>
+
+        <div class="figure-container">
+            <img src="3.png" alt="Autoencoder architecture">
+            <p class="caption">
+            </p>
+        </div>
+        <div class="figure-container">
+            <img src="4.png" alt="Autoencoder architecture">
+            <p class="caption">
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Suggested Citation</h2>
+
+        <div class="citation-box">
+            <p><strong>ABNT:</strong> [A PREENCHER – citação ABNT]</p>
+            <p><strong>Vancouver:</strong> [A PREENCHER – citação Vancouver]</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Authors and Contacts</h2>
+
+        <ul>
+            <li>
+                <strong>Emilly Ynialide Rodrigues de Lima</strong> –
+                <a href="mailto:emilly.ynialide@gmail.com">emilly.ynialide@gmail.com</a>
+            </li>
+
+            <li>
+                <strong>Meryck Felipe Brito da Silva</strong> –
+                <a href="mailto:meryck.ef@discente.ufg.br">meryck@pucgoias.edu.br</a>
+            </li>
+
+            <li>
+                <strong>Rafael Souto</strong> –
+                <a href="mailto:prof.rafaelsouto@gmail.com">prof.rafaelsouto@gmail.com</a>
+            </li>
+        </ul>
+    </section>
+
+</main>
+
+<footer>
+    <p>
+        <strong>INCT PDHN – Funbios</strong><br>
+        <a href="https://inct-pdhn-funbios.github.io/" target="_blank">
+            https://inct-pdhn-funbios.github.io/
+        </a>
+    </p>
+</footer>
+
+</body>
+</html>
