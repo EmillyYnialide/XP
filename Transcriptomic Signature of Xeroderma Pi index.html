@@ -23,6 +23,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: "Segoe UI", Arial, Helvetica, sans-serif;
             background-color: var(--light);
@@ -65,6 +69,52 @@
             opacity: 0.95;
         }
 
+        .section-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin: 18px auto 0;
+            max-width: 920px;
+            /* Desktop: inline, transparent */
+            position: static;
+            background: transparent;
+            padding: 0;
+        }
+
+        .section-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 999px;
+            color: white;
+            background: rgba(255,255,255,0.12);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .section-links a:hover,
+        .section-links a:focus-visible {
+            background: rgba(255,255,255,0.24);
+            transform: translateY(-1px);
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: none;
+        }
+
         main {
             max-width: 1200px;
             margin: auto;
@@ -84,12 +134,16 @@
             border-left: 5px solid var(--secondary);
             padding-left: 12px;
             margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         h3 {
             color: var(--secondary);
             margin-top: 25px;
             margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
         }
 
         p {
@@ -229,6 +283,15 @@
                 padding-top: 20px;
             }
 
+            .section-links {
+                position: sticky;
+                top: 0;
+                z-index: 20;
+                background: linear-gradient(135deg, var(--primary), var(--secondary));
+                padding: 12px 0 14px;
+                border-bottom: 1px solid rgba(255,255,255,0.16);
+            }
+
             header::before {
                 width: 100%;
                 max-width: 520px;
@@ -248,6 +311,15 @@
             h2 {
                 font-size: 1.2rem;
             }
+
+            .authors-container {
+                justify-content: center;
+            }
+
+            .author-card {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -255,11 +327,17 @@
 
 <header>
     <h1>Transcriptomic Signature of Xeroderma Pigmentosum Based on Autoencoders for Molecular Diagnosis Assistance</h1>
+    <nav class="section-links" role="navigation" aria-label="Quick links to main sections">
+        <a href="#abstract">Extended Abstract</a>
+        <a href="#figures">Figures</a>
+        <a href="#citation">Citation</a>
+        <a href="#authors">Authors</a>
+    </nav>
 </header>
 
 <main>
 
-    <section>
+    <section id="abstract" class="fade-in-section">
         <h2>EXTENDED ABSTRACT</h2>
 
         <h3>INTRODUCTION</h3>
@@ -296,7 +374,7 @@
         </p>
     </section>
 
-    <section>
+    <section id="figures" class="fade-in-section">
         <h2>FIGURES</h2>
 
         <div class="figure-container">
@@ -313,7 +391,7 @@
         </div>
     </section>
 
-    <section>
+    <section id="citation" class="fade-in-section">
     <h2>REFERENCES</h2>
 
     <div class="citation-box">
@@ -397,7 +475,7 @@
     </div>
 </section>
 
-    <section>
+    <section id="authors" class="fade-in-section">
         <h2>AUTHORS AND CONTACTS</h2>
 
         <div class="authors-container">
@@ -438,6 +516,23 @@
 </main>
 
 <footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sections = document.querySelectorAll('.fade-in-section');
+        const observer = new IntersectionObserver((entries, observerInstance) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observerInstance.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12
+        });
+        sections.forEach(section => observer.observe(section));
+    });
+</script>
     <p>
         <strong>GenIA – PUC-GO</strong><br>
     </p>
