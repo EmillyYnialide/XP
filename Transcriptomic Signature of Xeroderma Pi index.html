@@ -284,13 +284,20 @@
             }
 
             .section-links {
-                /* Mobile: keep nav fixed at top for quick access */
-                position: sticky;
+                /* Mobile: fixed at top for quick access */
+                position: fixed;
+                left: 0;
+                right: 0;
                 top: 0;
                 z-index: 999;
                 background: linear-gradient(135deg, var(--primary), var(--secondary));
-                padding: 12px 0 14px;
+                padding: 10px 8px;
                 border-bottom: 1px solid rgba(255,255,255,0.16);
+            }
+
+            /* Prevent content from hiding under fixed nav */
+            main {
+                padding-top: 72px;
             }
 
             header::before {
