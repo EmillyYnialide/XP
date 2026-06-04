@@ -37,7 +37,7 @@
         header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 20px 20px 30px;
+            padding: 20px 20px;
             text-align: center;
 
             overflow: hidden;
@@ -54,10 +54,10 @@
         header::before {
             content: "";
             display: block;
-            width: min(520px, 100%);
+            width: min(700px, 100%);
             aspect-ratio: 1 / 1;
-            margin: 0 auto -160px auto; /* Centraliza a imagem e empurra o título para baixo */
-            transform: translateY(-90px);
+            margin: 0 auto -210px auto; /* Centraliza a imagem e empurra o título para baixo */
+            transform: translateY(-120px);
             background-image: url('Poster imagem 1.png');
             background-size: contain;
             background-repeat: no-repeat;
@@ -302,8 +302,9 @@
                 margin: 0;
             }
 
-            section {
-                scroll-margin-top: 72px;
+            section,
+            h2 {
+                scroll-margin-top: 110px;
             }
 
             header::before {
@@ -346,7 +347,7 @@
 <nav class="section-links" role="navigation" aria-label="Quick links to main sections">
     <a href="#abstract">Extended Abstract</a>
     <a href="#figures">Figures</a>
-    <a href="#citation">Citation</a>
+    <a href="#citation">References</a>
     <a href="#authors">Authors</a>
 </nav>
 
@@ -516,7 +517,7 @@
             </div>
 
             <div class="author-card">
-                <img src="Emilly.jpeg" alt="Rafael Souto">
+                <img src="Rafael.jpeg" alt="Rafael Souto">
                 <h3>Rafael Souto</h3>
                 <p>
                     <a href="mailto:prof.rafaelsouto@gmail.com">
