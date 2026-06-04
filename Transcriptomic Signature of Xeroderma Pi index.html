@@ -74,7 +74,7 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 12px;
-            margin: 18px auto 0;
+            margin: 0 auto 0;
             max-width: 920px;
             /* Desktop: inline, transparent */
             position: static;
@@ -284,20 +284,20 @@
             }
 
             .section-links {
-                /* Mobile: fixed at top for quick access */
-                position: fixed;
+                /* Mobile: sticky just below the header image */
+                position: sticky;
+                top: 0;
                 left: 0;
                 right: 0;
-                top: 0;
                 z-index: 999;
                 background: linear-gradient(135deg, var(--primary), var(--secondary));
                 padding: 10px 8px;
                 border-bottom: 1px solid rgba(255,255,255,0.16);
+                margin: 0;
             }
 
-            /* Prevent content from hiding under fixed nav */
-            main {
-                padding-top: 72px;
+            section {
+                scroll-margin-top: 72px;
             }
 
             header::before {
