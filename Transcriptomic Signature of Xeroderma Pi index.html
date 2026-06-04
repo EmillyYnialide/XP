@@ -50,13 +50,11 @@
         header::before {
             content: "";
             display: block;
-            width: 700px; /* Ajuste a largura da imagem aqui */
-            height: 700px; /* Ajuste a altura da imagem aqui */
+            width: min(700px, 100%);
+            aspect-ratio: 1 / 1;
             margin: 0 auto -210px auto; /* Centraliza a imagem e empurra o título para baixo */
             transform: translateY(-120px);
-            /* CAMINHO DA IMAGEM: substitua pelo nome correto do seu arquivo */
-            background-image: url('Poster imagem 1.png'); 
-            
+            background-image: url('Poster imagem 1.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
