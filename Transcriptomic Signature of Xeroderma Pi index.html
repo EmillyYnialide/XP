@@ -284,12 +284,13 @@
             }
 
             .section-links {
-                position: sticky;
-                top: 0;
-                z-index: 20;
-                background: linear-gradient(135deg, var(--primary), var(--secondary));
-                padding: 12px 0 14px;
-                border-bottom: 1px solid rgba(255,255,255,0.16);
+                /* Mobile: keep links accessible but not fixed */
+                position: static;
+                top: auto;
+                z-index: auto;
+                background: transparent;
+                padding: 0;
+                border-bottom: none;
             }
 
             header::before {
