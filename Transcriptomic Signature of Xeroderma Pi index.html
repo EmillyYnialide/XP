@@ -37,7 +37,7 @@
         header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 20px 20px;
+            padding: 20px 20px 30px;
             text-align: center;
 
             overflow: hidden;
@@ -54,10 +54,10 @@
         header::before {
             content: "";
             display: block;
-            width: min(700px, 100%);
+            width: min(520px, 100%);
             aspect-ratio: 1 / 1;
-            margin: 0 auto -210px auto; /* Centraliza a imagem e empurra o título para baixo */
-            transform: translateY(-120px);
+            margin: 0 auto -160px auto; /* Centraliza a imagem e empurra o título para baixo */
+            transform: translateY(-90px);
             background-image: url('Poster imagem 1.png');
             background-size: contain;
             background-repeat: no-repeat;
@@ -74,12 +74,17 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 12px;
-            margin: 0 auto 0;
-            max-width: 920px;
-            /* Desktop: inline, transparent */
-            position: static;
-            background: transparent;
-            padding: 0;
+            width: 100%;
+            margin: 0;
+            max-width: none;
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: var(--primary);
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.16);
         }
 
         .section-links a {
@@ -127,6 +132,7 @@
             margin-bottom: 25px;
             border-radius: 12px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+            scroll-margin-top: 88px;
         }
 
         h2 {
