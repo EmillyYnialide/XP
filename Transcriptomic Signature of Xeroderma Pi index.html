@@ -33,8 +33,10 @@
         header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 60px 20px;
+            padding: 20px 20px;
             text-align: center;
+
+            overflow: hidden;
         }
        
         header h1 {
@@ -48,10 +50,10 @@
         header::before {
             content: "";
             display: block;
-            width: 900px; /* Ajuste a largura da imagem aqui */
-            height: 900px; /* Ajuste a altura da imagem aqui */
-            margin: 0 auto 20px auto; /* Centraliza a imagem e empurra o título para baixo */
-            
+            width: 700px; /* Ajuste a largura da imagem aqui */
+            height: 700px; /* Ajuste a altura da imagem aqui */
+            margin: 0 auto -210px auto; /* Centraliza a imagem e empurra o título para baixo */
+            transform: translateY(-120px);
             /* CAMINHO DA IMAGEM: substitua pelo nome correto do seu arquivo */
             background-image: url('Poster imagem 1.png'); 
             
@@ -101,25 +103,32 @@
             text-align: center;
         }
 
+        .figure-container figure {
+            margin: 0 auto 28px;
+            max-width: 920px;
+        }
+
         .figure-container img {
             width: 100%;
             max-width: 900px;
             height: auto;
             border-radius: 10px;
             border: 1px solid var(--border);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
+        .figure-container figcaption,
         .caption {
             color: var(--gray);
             font-style: italic;
             font-size: 0.95rem;
+            margin-top: 0;
         }
 
         .citation-box {
             background: #f8fafc;
             border-left: 4px solid var(--secondary);
-            padding: 15px;
+            padding: 20px;
             margin-top: 10px;
         }
 
@@ -131,6 +140,46 @@
             margin-bottom: 10px;
         }
 
+        .authors-container {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .author-card {
+            flex: 1 1 calc(33.333% - 12px);
+            min-width: 240px;
+            background: #fcfdff;
+            border: 1px solid #e1e7ee;
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .author-card img {
+            width: 100%;
+            max-width: 180px;
+            height: auto;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 16px;
+            object-fit: cover;
+        }
+
+        .author-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            color: var(--text);
+        }
+
+        .author-card p {
+            margin: 0;
+            text-align: center;
+        }
+
         a {
             color: var(--secondary);
             text-decoration: none;
@@ -138,6 +187,11 @@
 
         a:hover {
             text-decoration: underline;
+        }
+
+        a:focus-visible {
+            outline: 2px dashed var(--secondary);
+            outline-offset: 3px;
         }
 
         footer {
@@ -151,6 +205,25 @@
         footer a {
             color: #ffffff;
             font-weight: 600;
+        }
+
+        .citation-box {
+            background: #f8fafc;
+            border-left: 4px solid var(--secondary);
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+        .citation-box p {
+            margin-bottom: 18px;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .citation-box hr {
+            margin: 30px 0;
+            border: none;
+            border-top: 1px solid #d9dee5;
         }
 
         @media (max-width: 768px) {
@@ -177,7 +250,7 @@
 <main>
 
     <section>
-        <h2>Extended Abstract</h2>
+        <h2>EXTENDED ABSTRACT</h2>
 
         <h3>INTRODUCTION</h3>
         <p>
@@ -214,58 +287,149 @@
     </section>
 
     <section>
-        <h2>Figures</h2>
+        <h2>FIGURES</h2>
 
         <div class="figure-container">
-            <img src="3.png" alt="Autoencoder architecture">
-            <p class="caption">
-            </p>
+            <figure>
+                <img src="3.png" alt="Autoencoder architecture">
+                <figcaption>Source: Author, 2026.</figcaption>
+            </figure>
         </div>
         <div class="figure-container">
-            <img src="4.png" alt="Autoencoder architecture">
-            <p class="caption">
-            </p>
+            <figure>
+                <img src="4.png" alt="Autoencoder architecture">
+                <figcaption>Source: Author, 2026.</figcaption>
+            </figure>
         </div>
     </section>
 
     <section>
-        <h2>Suggested Citation</h2>
+    <h2>REFERENCES</h2>
 
-        <div class="citation-box">
-            <p><strong>ABNT:</strong> [A PREENCHER – citação ABNT]</p>
-            <p><strong>Vancouver:</strong> [A PREENCHER – citação Vancouver]</p>
-        </div>
-    </section>
+    <div class="citation-box">
+
+        <p><strong>ABNT:</strong></p>
+
+        <p>
+            CARDOSO, José Fernandes da Silva; MARTINS, Mariana Paiva Braga; FARIA, Ivan Aurélio Fortuna Kalil de; LOBO, Daniel Mendes Lira; FERREIRA, Tainan Gomes et al.
+            <em>Inteligência artificial no diagnóstico precoce de doenças crônicas: desafios e perspectivas.</em>
+            Revista Ibero-Americana de Humanidades, Ciências e Educação, v. 10, n. 12, p. 2451–2461, 2024.
+            DOI: 10.51891/rease.v10i12.17626.
+        </p>
+
+        <p>
+            OLIVEIRA, Ana Helena Sales.
+            <em>Os genes do xeroderma pigmentoso e a sensibilidade ao sol.</em>
+            Genética na Escola, v. 16, n. 1, p. 28–37, 2021.
+            DOI: 10.55838/1980-3540.ge.2021.366.
+        </p>
+
+        <p>
+            PASSOS, Matheus Jacobina Brito; BRITO, Vanessa Araújo Jacobina; ALMEIDA NETO, Alcides Duarte de.
+            <em>Xeroderma pigmentoso: uma patologia rara.</em>
+            Brazilian Journal of Implantology and Health Sciences, v. 6, n. 9, p. 2349–2353, 2024.
+            DOI: 10.36557/2674-8169.2024v6n9p2349-2353.
+        </p>
+
+        <p>
+            TAMA SÁNCHEZ, Francisco A.; VASQUEZ FALCONÍ, Joselyn A.; AGUILAR MEJÍA, Rommel M.; RODRÍGUEZ PÉREZ, Juan Carlos A.; LÓPEZ SOLÓRZANO, Anthony A.; PAREDES JERÉZ, Kevin D.
+            <em>Xeroderma pigmentoso: reporte de caso y revisión de la literatura.</em>
+            Revista Científica de Salud y Desarrollo Humano, v. 5, n. 2, p. 44–55, 2024.
+            DOI: 10.61368/r.s.d.h.v5i2.117.
+        </p>
+
+        <p>
+            ZGHAL, M.; MESSAOUD, O.; MOKNI, M.
+            <em>Xeroderma pigmentoso.</em>
+            EMC - Dermatología, v. 55, n. 2, p. 1–21, 2021.
+            DOI: 10.1016/S1761-2896(21)45140-X.
+        </p>
+
+        <hr>
+
+        <p><strong>Vancouver:</strong></p>
+
+        <p>
+            1. Cardoso JFS, Martins MPB, Faria IAFK, Lobo DML, Ferreira TG, et al.
+            Inteligência artificial no diagnóstico precoce de doenças crônicas: desafios e perspectivas.
+            Rev Ibero-Am Humanid Cienc Educ. 2024;10(12):2451–2461.
+            doi:10.51891/rease.v10i12.17626.
+        </p>
+
+        <p>
+            2. Oliveira AHS.
+            Os genes do xeroderma pigmentoso e a sensibilidade ao sol.
+            Genet Esc. 2021;16(1):28–37.
+            doi:10.55838/1980-3540.ge.2021.366.
+        </p>
+
+        <p>
+            3. Passos MJB, Brito VAJ, Almeida Neto AD.
+            Xeroderma pigmentoso: uma patologia rara.
+            Braz J Implantol Health Sci. 2024;6(9):2349–2353.
+            doi:10.36557/2674-8169.2024v6n9p2349-2353.
+        </p>
+
+        <p>
+            4. Tama Sánchez FA, Vasquez Falconí JA, Aguilar Mejía RM, Rodríguez Pérez JCA, López Solórzano AA, Paredes Jeréz KD.
+            Xeroderma pigmentoso: reporte de caso y revisión de la literatura.
+            Rev Cient Salud Desarro Humano. 2024;5(2):44–55.
+            doi:10.61368/r.s.d.h.v5i2.117.
+        </p>
+
+        <p>
+            5. Zghal M, Messaoud O, Mokni M.
+            Xeroderma pigmentoso.
+            EMC Dermatol. 2021;55(2):1–21.
+            doi:10.1016/S1761-2896(21)45140-X.
+        </p>
+
+    </div>
+</section>
 
     <section>
-        <h2>Authors and Contacts</h2>
+        <h2>AUTHORS AND CONTACTS</h2>
 
-        <ul>
-            <li>
-                <strong>Emilly Ynialide Rodrigues de Lima</strong> –
-                <a href="mailto:emilly.ynialide@gmail.com">emilly.ynialide@gmail.com</a>
-            </li>
+        <div class="authors-container">
 
-            <li>
-                <strong>Meryck Felipe Brito da Silva</strong> –
-                <a href="mailto:meryck.ef@discente.ufg.br">meryck@pucgoias.edu.br</a>
-            </li>
+            <div class="author-card">
+                <img src="Emilly.jpeg" alt="Emilly Ynialide Rodrigues de Lima">
+                <h3>Emilly Ynialide Rodrigues de Lima</h3>
+                <p>
+                    <a href="mailto:emilly.ynialide@gmail.com">
+                        emilly.ynialide@gmail.com
+                    </a>
+                </p>
+            </div>
 
-            <li>
-                <strong>Rafael Souto</strong> –
-                <a href="mailto:prof.rafaelsouto@gmail.com">prof.rafaelsouto@gmail.com</a>
-            </li>
-        </ul>
+            <div class="author-card">
+                <img src="Emilly.jpeg" alt="Meryck Felipe Brito da Silva">
+                <h3>Meryck Felipe Brito da Silva</h3>
+                <p>
+                    <a href="mailto:meryck@pucgoias.edu.br">
+                        meryck@pucgoias.edu.br
+                    </a>
+                </p>
+            </div>
+
+            <div class="author-card">
+                <img src="Emilly.jpeg" alt="Rafael Souto">
+                <h3>Rafael Souto</h3>
+                <p>
+                    <a href="mailto:prof.rafaelsouto@gmail.com">
+                        prof.rafaelsouto@gmail.com
+                    </a>
+                </p>
+            </div>
+
+        </div>
     </section>
 
 </main>
 
 <footer>
     <p>
-        <strong>INCT PDHN – Funbios</strong><br>
-        <a href="https://inct-pdhn-funbios.github.io/" target="_blank">
-            https://inct-pdhn-funbios.github.io/
-        </a>
+        <strong>GenIA – PUC-GO</strong><br>
     </p>
 </footer>
 
