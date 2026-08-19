@@ -15,6 +15,19 @@
             --border: #d9dee5;
             --text: #2b2b2b;
             --white: #ffffff;
+            --header-bg: url('Poster imagem 1.png');
+        }
+
+        /* Melanoma (orange) theme overrides when body has .melanoma */
+        body.melanoma {
+            --primary: #b44b00; /* deep orange */
+            --secondary: #ff8c42; /* warm orange */
+            --light: #fff7f0;
+            --gray: #7a5840;
+            --border: #f3d1b3;
+            --text: #2e1f18;
+            --white: #ffffff;
+            --header-bg: url('Melanoma/Melanoma fig.png');
         }
 
         * {
@@ -58,7 +71,7 @@
             aspect-ratio: 1 / 1;
             margin: 0 auto -210px auto; /* Centraliza a imagem e empurra o título para baixo */
             transform: translateY(-120px);
-            background-image: url('Poster imagem 1.png');
+            background-image: var(--header-bg);
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -196,6 +209,81 @@
 
         li {
             margin-bottom: 10px;
+        }
+
+        /* Article selector styles */
+        .article-selector {
+            background: linear-gradient(90deg, rgba(31,58,95,0.06), rgba(47,93,138,0.04));
+            padding: 18px 12px;
+            text-align: center;
+        }
+
+        .selector-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-wrap {
+            text-align: center;
+            margin-bottom: 8px;
+            width: 100%;
+            max-width: 420px;
+            height: auto; /* show full image */
+            overflow: visible; /* allow full image display */
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        .logo-wrap img {
+            width: auto;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            transform: translateY(0); /* show full image */
+        }
+
+        .selector-inner h2 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .selector-cards {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .sel-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 16px 18px;
+            border-radius: 12px;
+            max-width: 560px;
+            min-width: 260px;
+            text-align: left;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .sel-card:focus,
+        .sel-card:hover {
+            box-shadow: 0 6px 18px rgba(31,58,95,0.08);
+            transform: translateY(-3px);
+        }
+
+        .img-missing {
+            background: #fff4e6;
+            border: 1px solid #ffd1a8;
+            color: #7a4b1a;
+            padding: 12px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 8px;
         }
 
         .authors-container {
@@ -340,15 +428,34 @@
 </head>
 <body>
 
+    <div class="article-selector" aria-label="Selecione um artigo">
+        <div class="selector-inner">
+            <div class="logo-wrap">
+                <img src="LOGO GENIA GENETICA.jpeg" alt="LOGO GENIA GENETICA">
+            </div>
+            <h2>Pôster (Banner):</h2>
+            <div class="selector-cards">
+                <button class="sel-card" data-article="xp" aria-pressed="false">
+                    <strong>Transcriptomic Signature of Xeroderma Pigmentosum Based on Autoencoders for Molecular Diagnosis Assistance</strong>
+                    <div style="margin-top:8px; color:var(--gray); font-weight:600;">Xmeeting 26</div>
+                </button>
+                <button class="sel-card" data-article="m" aria-pressed="false">
+                    <strong>One-Class Approaches for Detecting Melanoma-Associated Transcriptomic Alterations: Comparison of Autoencoder and Classical Machine Learning Methods Across Independent Cohorts</strong>
+                    <div style="margin-top:8px; color:var(--gray); font-weight:600;">SNNB 26</div>
+                </button>
+            </div>
+        </div>
+    </div>
+
 <header>
-    <h1>Transcriptomic Signature of Xeroderma Pigmentosum Based on Autoencoders for Molecular Diagnosis Assistance</h1>
+    <h1 id="page-title">Escolha um estudo</h1>
 </header>
 
 <nav class="section-links" role="navigation" aria-label="Quick links to main sections">
-    <a href="#abstract">Extended Abstract</a>
-    <a href="#figures">Figures</a>
-    <a href="#citation">References</a>
-    <a href="#authors">Authors</a>
+    <a href="#abstract" data-target="abstract">Extended Abstract</a>
+    <a href="#figures" data-target="figures">Figures</a>
+    <a href="#citation" data-target="citation">References</a>
+    <a href="#authors" data-target="authors">Authors</a>
 </nav>
 
 <main>
@@ -388,6 +495,208 @@
         <p>
             We plan to refine the autoencoder architecture by exploring denoising and variational autoencoders (VAEs) to increase the robustness of anomaly detection. Independent cohort validation and integration of multi-omics data (e.g., proteomics, methylation) are also planned to enhance biological interpretability. Ultimately, the optimized model and the list of biomarker genes will be made publicly available on our research group’s website, enabling the scientific community to reproduce and apply the tool for Xeroderma Pigmentosum molecular diagnosis.
         </p>
+    </section>
+
+    <!-- Melanoma study sections -->
+    <section id="m-abstract" class="fade-in-section" style="display:none;">
+        <h2>EXTENDED ABSTRACT</h2>
+
+        <h3>INTRODUCTION</h3>
+        <p>
+            Melanoma is characterized by substantial molecular heterogeneity, motivating the development of computational approaches capable of identifying disease-associated transcriptomic alterations. One-class anomaly detection is particularly relevant in this context because models can learn the molecular profile of healthy tissue and subsequently identify deviations from this reference without requiring tumor samples during training. Although deep learning approaches such as autoencoders provide flexible representations of high-dimensional transcriptomic data, classical anomaly-detection algorithms may offer competitive performance when sample sizes are limited. Therefore, comparisons across independent cohorts are essential to determine whether increasingly complex models provide meaningful advantages and whether the molecular signals detected are biologically reproducible.
+        </p>
+
+        <h3>OBJECTIVES</h3>
+        <p>
+            To develop and evaluate a one-class computational framework for detecting melanoma-associated transcriptomic alterations; compare autoencoder performance with classical anomaly-detection methods across independent cohorts; assess external generalization in a frozen test cohort; investigate differences between primary and metastatic melanoma; and evaluate the cross-cohort reproducibility and functional relevance of the identified molecular alterations.
+        </p>
+
+        <h3>METHODOLOGY</h3>
+        <p>
+            Transcriptomic microarray datasets from six independent Gene Expression Omnibus (GEO) cohorts were analyzed: GSE3189, GSE46517, GSE15605, GSE100050, GSE4587, and GSE7553. The datasets included healthy controls, nevi, primary melanoma, and metastatic melanoma samples generated on GPL96 and GPL570 platforms. GSE7553 was reserved as a frozen independent external test cohort.
+        </p>
+
+        <p>
+            The computational workflow was designed under a one-class strategy in which model development relied exclusively on healthy controls. Probe-to-gene annotation, cross-study gene harmonization, train-only feature selection, train-fitted normalization, and batch-effect assessment were incorporated to minimize information leakage. Test samples were excluded from feature selection, normalization fitting, model fitting, and threshold definition.
+        </p>
+
+        <p>
+            Four anomaly-detection approaches were evaluated: a deep autoencoder, One-Class Support Vector Machine (OC-SVM), Isolation Forest, and PCA-Mahalanobis distance. Model performance was investigated through cross-study evaluation and subsequent external validation in GSE7553. ROC-AUC, AUPRC, balanced accuracy, and complementary classification metrics were used to characterize discrimination. External performance was additionally stratified into primary and metastatic melanoma.
+        </p>
+
+        <p>
+            To investigate biological reproducibility, cross-cohort differential expression analyses were performed and consistently altered genes were compared across independent cohorts. Functional enrichment analysis was subsequently applied to reproducibly altered genes to identify biological processes associated with the detected transcriptomic signals.
+        </p>
+
+        <h3>RESULTS</h3>
+        <p>
+            All one-class approaches except PCA-Mahalanobis demonstrated substantial discriminatory ability in the frozen external cohort GSE7553. OC-SVM achieved the highest external performance, with a ROC-AUC of <strong>0.982</strong> and balanced accuracy of <strong>0.920</strong>, outperforming the autoencoder (<strong>ROC-AUC = 0.915</strong>) and Isolation Forest (<strong>ROC-AUC = 0.871</strong>). PCA-Mahalanobis showed substantially lower external discrimination (<strong>ROC-AUC = 0.371</strong>).
+        </p>
+
+        <p>
+            Stage-stratified analysis revealed differences in performance according to melanoma stage. For primary melanoma, the autoencoder achieved a ROC-AUC of <strong>0.786</strong>, whereas OC-SVM reached <strong>0.929</strong>. Performance increased for metastatic melanoma, reaching <strong>0.975</strong> for the autoencoder and <strong>1.000</strong> for OC-SVM. These findings indicate that transcriptomic deviations were more readily discriminated in metastatic than in primary disease.
+        </p>
+
+        <p>
+            Cross-cohort molecular analysis identified reproducible alterations involving <strong>PRAME, S100B, MITF, CDK2, and BIRC5</strong>. Consistent positive differential-expression signals were observed across independent cohorts, supporting the reproducibility of these melanoma-associated molecular alterations. Functional enrichment further highlighted <strong>interferon-gamma response, TNF-alpha signaling via NF-kB, inflammatory response, and epithelial–mesenchymal transition</strong>, connecting the computationally detected signals to immune, inflammatory, and tumor-progression-related biological processes.
+        </p>
+
+        <h3>CONCLUSION</h3>
+        <p>
+            One-class anomaly-detection approaches successfully identified melanoma-associated transcriptomic deviations and generalized to an independent external cohort. In this limited-sample transcriptomic setting, <strong>OC-SVM outperformed the autoencoder</strong>, achieving the strongest external discrimination. The stage-dependent results further demonstrated that primary melanoma represents a more challenging detection scenario than metastatic disease.
+        </p>
+
+        <h3>FUTURE PERSPECTIVES</h3>
+        <p>
+            Future work should expand validation to additional independent cohorts and sequencing technologies, particularly RNA-seq, to evaluate robustness across platforms and populations. Larger healthy-control datasets may improve estimation of the normal transcriptomic space and enable more extensive optimization of one-class models. Additional strategies may include alternative representation-learning architectures, integration of clinical variables and multi-omics data, and deeper investigation of reproducible molecular signals as potential biomarkers.
+        </p>
+    </section>
+
+    <section id="m-figures" class="fade-in-section" style="display:none;">
+        <h2>FIGURES</h2>
+
+        <div class="figure-container">
+            <h3>Study design</h3>
+            <figure>
+                <img src="Melanoma/01_study_design_png.png" alt="Study design">
+                <figcaption>Source: Author, 2026.</figcaption>
+            </figure>
+        </div>
+
+        <div class="figure-container">
+            <h3>External validation</h3>
+            <figure>
+                <img src="Melanoma/02_external_validation_CORRECTED.png" alt="External validation results">
+                <figcaption>Source: Author, 2026.</figcaption>
+            </figure>
+        </div>
+
+        <div class="figure-container">
+            <h3>Stage-stratified performance</h3>
+            <figure>
+                <img src="Melanoma/03_stage_stratified_CORRECTED.png" alt="Stage-stratified performance">
+                <figcaption>Source: Author, 2026.</figcaption>
+            </figure>
+        </div>
+
+        <div class="figure-container">
+            <h3>Cohort overview</h3>
+            <figure>
+                <img src="Melanoma/04_cohort_overview.png" alt="Cohort overview">
+                <figcaption>Source: Author, 2026.</figcaption>
+            </figure>
+        </div>
+
+        <div class="figure-container">
+            <h3>Molecular reproducibility</h3>
+            <figure>
+                <img src="Melanoma/05_molecular_reproducibility.png" alt="Molecular reproducibility">
+                <figcaption>Source: Author, 2026.</figcaption>
+            </figure>
+        </div>
+
+        <div class="figure-container">
+            <h3>Functional enrichment</h3>
+            <figure>
+                <img src="Melanoma/06_functional_enrichment.png" alt="Functional enrichment">
+                <figcaption>Source: Author, 2026.</figcaption>
+            </figure>
+        </div>
+
+        <div class="figure-container">
+            <h3>One-class concept</h3>
+            <figure>
+                <img src="Melanoma/07_one_class_concept_REDESIGNED.png" alt="One-class concept" loading="lazy" style="max-width:100%;height:auto;display:block;" onerror="this.style.display='none';var fb=this.parentNode.querySelector('.fig-fallback-inline'); if(fb) fb.style.display='block';">
+                <figcaption>Source: Author, 2026.</figcaption>
+                <div class="fig-fallback-inline" style="display:none;color:#a00;margin-top:8px;font-family:inherit;font-size:0.95rem;">Imagem não encontrada — abra <a href="Melanoma/07_one_class_concept_REDESIGNED.png" target="_blank">diretamente</a>.</div>
+            </figure>
+        </div>
+
+        <div class="figure-container">
+            <h3>Biological interpretation map</h3>
+            <figure>
+                <img src="Melanoma/08_biological_interpretation_map.png" alt="Biological interpretation map" loading="lazy" style="max-width:100%;height:auto;display:block;" onerror="this.style.display='none';var fb=this.parentNode.querySelector('.fig-fallback-inline'); if(fb) fb.style.display='block';">
+                <figcaption>Source: Author, 2026.</figcaption>
+                <div class="fig-fallback-inline" style="display:none;color:#a00;margin-top:8px;font-family:inherit;font-size:0.95rem;">Imagem não encontrada — abra <a href="Melanoma/08_biological_interpretation_map.png" target="_blank">diretamente</a>.</div>
+            </figure>
+        </div>
+
+        <div class="figure-container">
+            <h3>Key findings panel</h3>
+            <figure>
+                <img src="Melanoma/09_key_findings_panel.png" alt="Key findings panel" loading="lazy" style="max-width:100%;height:auto;display:block;" onerror="this.style.display='none';var fb=this.parentNode.querySelector('.fig-fallback-inline'); if(fb) fb.style.display='block';">
+                <figcaption>Source: Author, 2026.</figcaption>
+                <div class="fig-fallback-inline" style="display:none;color:#a00;margin-top:8px;font-family:inherit;font-size:0.95rem;">Imagem não encontrada — abra <a href="Melanoma/09_key_findings_panel.png" target="_blank">diretamente</a>.</div>
+            </figure>
+        </div>
+
+        <!-- Figures 07, 08, 09 removed per request -->
+
+    </section>
+
+    <section id="m-citation" class="fade-in-section" style="display:none;">
+        <h2>REFERENCES</h2>
+        <div class="citation-box">
+            <h3>ABNT</h3>
+            <ol>
+                <li>KALAORA, S.; NAGLER, A.; WARGO, J. A. et al. Mechanisms of immune activation and regulation: lessons from melanoma. <strong>Nature Reviews Cancer</strong>, v. 22, p. 195–207, 2022. DOI: 10.1038/s41568-022-00442-9.</li>
+                <li>ZHANG, C.; SHEN, H.; YANG, T. et al. A single-cell analysis reveals tumor heterogeneity and immune environment of acral melanoma. <strong>Nature Communications</strong>, v. 13, art. 7250, 2022. DOI: 10.1038/s41467-022-34877-3.</li>
+                <li>WEI, C.; SUN, W.; SHEN, K. et al. Delineating the early dissemination mechanisms of acral melanoma by integrating single-cell and spatial transcriptomic analyses. <strong>Nature Communications</strong>, v. 14, art. 8119, 2023. DOI: 10.1038/s41467-023-43980-y.</li>
+                <li>ANDREWS, M. C.; OBA, J.; WU, C.-J. et al. Multi-modal molecular programs regulate melanoma cell state. <strong>Nature Communications</strong>, v. 13, art. 4000, 2022. DOI: 10.1038/s41467-022-31510-1.</li>
+                <li>WANG, K. Y. X.; PUPO, G. M.; TEMBE, V. et al. Cross-Platform Omics Prediction procedure: a statistical machine learning framework for wider implementation of precision medicine. <strong>npj Digital Medicine</strong>, v. 5, art. 85, 2022. DOI: 10.1038/s41746-022-00618-5.</li>
+                <li>DONG, K.; ZHANG, S. Deciphering spatial domains from spatially resolved transcriptomics with an adaptive graph attention auto-encoder. <strong>Nature Communications</strong>, v. 13, art. 1739, 2022. DOI: 10.1038/s41467-022-29439-6.</li>
+                <li>CEGLIA, N.; SETHNA, Z.; FREEMAN, S. S. et al. Identification of transcriptional programs using dense vector representations defined by mutual information with GeneVector. <strong>Nature Communications</strong>, v. 14, 4400, 2023. DOI: 10.1038/s41467-023-39985-2.</li>
+            </ol>
+
+            <h3>VANCOUVER</h3>
+            <ol>
+                <li>Kalaora S, Nagler A, Wargo JA, et al. Mechanisms of immune activation and regulation: lessons from melanoma. <strong>Nat Rev Cancer.</strong> 2022;22:195-207. doi:10.1038/s41568-022-00442-9.</li>
+                <li>Zhang C, Shen H, Yang T, et al. A single-cell analysis reveals tumor heterogeneity and immune environment of acral melanoma. <strong>Nat Commun.</strong> 2022;13:7250. doi:10.1038/s41467-022-34877-3.</li>
+                <li>Wei C, Sun W, Shen K, et al. Delineating the early dissemination mechanisms of acral melanoma by integrating single-cell and spatial transcriptomic analyses. <strong>Nat Commun.</strong> 2023;14:8119. doi:10.1038/s41467-023-43980-y.</li>
+                <li>Andrews MC, Oba J, Wu CJ, et al. Multi-modal molecular programs regulate melanoma cell state. <strong>Nat Commun.</strong> 2022;13:4000. doi:10.1038/s41467-022-31510-1.</li>
+                <li>Wang KYX, Pupo GM, Tembe V, et al. Cross-Platform Omics Prediction procedure: a statistical machine learning framework for wider implementation of precision medicine. <strong>NPJ Digit Med.</strong> 2022;5:85. doi:10.1038/s41746-022-00618-5.</li>
+                <li>Dong K, Zhang S. Deciphering spatial domains from spatially resolved transcriptomics with an adaptive graph attention auto-encoder. <strong>Nat Commun.</strong> 2022;13:1739. doi:10.1038/s41467-022-29439-6.</li>
+                <li>Ceglia N, Sethna Z, Freeman SS, et al. Identification of transcriptional programs using dense vector representations defined by mutual information with GeneVector. <strong>Nat Commun.</strong> 2023;14:4400. doi:10.1038/s41467-023-39985-2.</li>
+            </ol>
+        </div>
+    </section>
+
+    <section id="m-authors" class="fade-in-section" style="display:none;">
+        <h2>AUTHORS AND CONTACTS</h2>
+
+        <div class="authors-container">
+
+            <div class="author-card">
+                <img src="Emilly.jpeg" alt="Emilly Ynialide">
+                <h3>Emilly Ynialide</h3>
+                <p>
+                    <a href="mailto:emilly.ynialide@gmail.com">
+                        emilly.ynialide@gmail.com
+                    </a>
+                </p>
+            </div>
+
+            <div class="author-card">
+                <img src="Meryck.jpeg" alt="Meryck Felipe Brito da Silva">
+                <h3>Meryck Felipe Brito da Silva</h3>
+                <p>
+                    <a href="mailto:meryck@pucgoias.edu.br">
+                        meryck@pucgoias.edu.br
+                    </a>
+                </p>
+            </div>
+
+            <div class="author-card">
+                <img src="Rafael.jpeg" alt="Rafael Souto">
+                <h3>Rafael Souto</h3>
+                <p>
+                    <a href="mailto:prof.rafaelsouto@gmail.com">
+                        prof.rafaelsouto@gmail.com
+                    </a>
+                </p>
+            </div>
+
+        </div>
     </section>
 
     <section id="figures" class="fade-in-section">
@@ -543,13 +852,237 @@
                     observerInstance.unobserve(entry.target);
                 }
             });
-        }, {
-            threshold: 0.12
-        });
+        }, { threshold: 0.12 });
         sections.forEach(section => observer.observe(section));
 
-        const navLinks = document.querySelectorAll('.section-links a[href^="#"]');
+        const navLinks = document.querySelectorAll('.section-links a');
         const stickyNav = document.querySelector('.section-links');
+        const headerEl = document.querySelector('header');
+        const selectorButtons = document.querySelectorAll('.sel-card');
+        const pageTitle = document.getElementById('page-title');
+        const SHOW_DEBUG = true; // set to true to display image probe diagnostics
+        let currentArticle = 'xp'; // default
+
+        function setArticle(article) {
+            currentArticle = article;
+            // show main content when an article is selected
+            const mainContent = document.querySelector('main');
+            if (mainContent) mainContent.style.display = '';
+            // reveal header + nav when an article is chosen
+            if (stickyNav) stickyNav.style.display = '';
+            if (headerEl) headerEl.style.display = '';
+            // toggle body class for theme
+            if (article === 'm') {
+                document.body.classList.add('melanoma');
+            } else {
+                document.body.classList.remove('melanoma');
+            }
+            // update title
+            if (article === 'xp') {
+                pageTitle.textContent = 'Transcriptomic Signature of Xeroderma Pigmentosum Based on Autoencoders for Molecular Diagnosis Assistance';
+            } else {
+                pageTitle.textContent = 'One-Class Approaches for Detecting Melanoma-Associated Transcriptomic Alterations: Comparison of Autoencoder and Classical Machine Learning Methods Across Independent Cohorts';
+            }
+
+            // show/hide sections
+            const xpIds = ['abstract','figures','citation','authors'];
+            xpIds.forEach(id => {
+                const el = document.getElementById(id);
+                const mel = document.getElementById('m-' + id);
+                if (el) el.style.display = (article === 'xp') ? '' : 'none';
+                if (mel) mel.style.display = (article === 'm') ? '' : 'none';
+            });
+
+            // update nav links hrefs
+            navLinks.forEach(link => {
+                const target = link.dataset.target;
+                const prefix = (article === 'xp') ? '' : 'm-';
+                link.setAttribute('href', '#' + prefix + target);
+            });
+
+            // verify images in the selected figures section using Image() probes
+            const figSectionId = (article === 'xp') ? 'figures' : 'm-figures';
+            const figSection = document.getElementById(figSectionId);
+            const images = figSection ? Array.from(figSection.querySelectorAll('img')) : [];
+
+            // remove previous fallback notice
+            if (figSection) {
+                const existing = figSection.querySelector('.fig-fallback');
+                if (existing) existing.remove();
+            }
+
+            // If this is the Melanoma figures section, clean any diagnostics/fallbacks and skip image probing entirely
+            if (figSection && figSection.id === 'm-figures') {
+                const dbg = figSection.querySelector('.debug-panel');
+                if (dbg) dbg.remove();
+                const fb2 = figSection.querySelector('.fig-fallback');
+                if (fb2) fb2.remove();
+                // remove any leftover missing notes
+                const missing = figSection.querySelectorAll('.img-missing');
+                missing.forEach(n => n.remove());
+                return; // do not run probes or HEAD checks for Melanoma
+            }
+
+            function probeImage(img, figSection) {
+                return new Promise(async resolve => {
+                    const originalSrc = img.getAttribute('src') || '';
+                    const safeSrc = originalSrc.split('/').map(part => encodeURIComponent(part)).join('/');
+                    const candidates = Array.from(new Set([originalSrc, safeSrc]));
+
+                    // remove previous missing note if present (we'll re-add if still missing)
+                    const prevNote = img.parentNode && img.parentNode.querySelector ? img.parentNode.querySelector('.img-missing') : null;
+                    if (prevNote) prevNote.remove();
+
+                    // prepare debug panel (only for Melanoma figures)
+                    let debugPanel = null;
+                    if (SHOW_DEBUG && figSection && figSection.id === 'm-figures') {
+                        debugPanel = figSection.querySelector('.debug-panel');
+                        if (!debugPanel) {
+                            debugPanel = document.createElement('div');
+                            debugPanel.className = 'debug-panel';
+                            debugPanel.style.fontFamily = 'monospace';
+                            debugPanel.style.fontSize = '0.9rem';
+                            debugPanel.style.background = '#fffef6';
+                            debugPanel.style.border = '1px dashed #f0c27b';
+                            debugPanel.style.padding = '8px';
+                            debugPanel.style.marginBottom = '12px';
+                            figSection.insertBefore(debugPanel, figSection.firstChild);
+                        } else {
+                            debugPanel.innerHTML = '';
+                        }
+                    }
+
+                    // try candidates sequentially
+                    for (let i = 0; i < candidates.length; i++) {
+                        const src = candidates[i];
+                        if (!src) continue;
+                        const probe = new Image();
+                        let settled = false;
+
+                        const p = new Promise(done => {
+                            probe.onload = function() {
+                                if (!settled) {
+                                    img.src = probe.src;
+                                    img.style.display = '';
+                                    settled = true;
+                                    done(true);
+                                }
+                            };
+                            probe.onerror = function() {
+                                if (!settled) {
+                                    settled = true;
+                                    done(false);
+                                }
+                            };
+                            if (debugPanel) {
+                                const line = document.createElement('div');
+                                line.textContent = 'Probing: ' + src;
+                                debugPanel.appendChild(line);
+                            }
+                            // set src and wait
+                            try { probe.src = src; }
+                            catch (e) { probe.onerror(); }
+                            // timeout per candidate
+                            setTimeout(() => { if (!settled) probe.onerror(); }, 3000);
+                        });
+
+                        const ok = await p;
+                        if (ok) {
+                            if (debugPanel) {
+                                const line = document.createElement('div');
+                                line.textContent = 'Loaded: ' + src;
+                                line.style.color = 'green';
+                                debugPanel.appendChild(line);
+                            }
+                            return resolve(true);
+                        }
+                        else if (debugPanel) {
+                            const line = document.createElement('div');
+                            line.textContent = 'Failed: ' + src;
+                            line.style.color = 'crimson';
+                            debugPanel.appendChild(line);
+                        }
+                        // else try next candidate
+                    }
+
+                    // all candidates failed
+                    img.style.display = 'none';
+                    if (!img._missingNote) {
+                        const note = document.createElement('div');
+                        note.className = 'img-missing';
+                        note.textContent = 'Figura não encontrada.';
+                        img.parentNode.appendChild(note);
+                        img._missingNote = true;
+                    }
+                    resolve(false);
+                });
+            }
+
+            // Additional diagnostic: perform HEAD fetch on image URLs to see server status
+            async function checkImageURLs(figSection, images) {
+                if (!figSection) return;
+                let debugPanel = figSection.querySelector('.debug-panel');
+                if (!debugPanel) {
+                    debugPanel = document.createElement('div');
+                    debugPanel.className = 'debug-panel';
+                    debugPanel.style.fontFamily = 'monospace';
+                    debugPanel.style.fontSize = '0.9rem';
+                    debugPanel.style.background = '#fffef6';
+                    debugPanel.style.border = '1px dashed #f0c27b';
+                    debugPanel.style.padding = '8px';
+                    debugPanel.style.marginBottom = '12px';
+                    figSection.insertBefore(debugPanel, figSection.firstChild);
+                }
+                // header removed per user request
+
+                for (const img of images) {
+                    const src = img.getAttribute('src') || '';
+                    const line = document.createElement('div');
+                    line.textContent = src + ' → checking...';
+                    debugPanel.appendChild(line);
+                    try {
+                        const resp = await fetch(src, { method: 'HEAD' });
+                        line.textContent = src + ' → ' + resp.status + ' ' + resp.statusText;
+                        line.style.color = resp.ok ? 'green' : 'crimson';
+                    } catch (e) {
+                        line.textContent = src + ' → fetch error';
+                        line.style.color = 'crimson';
+                    }
+                }
+            }
+
+            Promise.all(images.map(img => probeImage(img, figSection))).then(results => {
+                const anyLoaded = results.some(r => r === true);
+                if (!anyLoaded && figSection) {
+                    const fallback = document.createElement('div');
+                    fallback.className = 'fig-fallback';
+                    fallback.style.padding = '18px';
+                    fallback.style.background = '#fff6f0';
+                    fallback.style.border = '1px solid #ffd1a8';
+                    fallback.style.borderRadius = '10px';
+                    fallback.innerHTML = '<strong>Nenhuma figura carregada. Abra as imagens diretamente:</strong><br>';
+                    const list = document.createElement('div');
+                    const imgs = images.map(i => i.getAttribute('src'));
+                    imgs.forEach(src => {
+                        const a = document.createElement('a');
+                        a.href = src;
+                        a.textContent = src.split('/').pop();
+                        a.style.display = 'inline-block';
+                        a.style.margin = '6px 10px 0 0';
+                        a.target = '_blank';
+                        list.appendChild(a);
+                    });
+                    fallback.appendChild(list);
+                    const insertBefore = figSection.querySelector('.figure-container');
+                    if (insertBefore) figSection.insertBefore(fallback, insertBefore);
+                    else figSection.appendChild(fallback);
+                }
+                // run HEAD checks for diagnostics only for Melanoma section
+                if (figSection && figSection.id === 'm-figures') {
+                    checkImageURLs(figSection, images);
+                }
+            });
+        }
 
         function scrollToSection(hash) {
             const target = document.querySelector(hash);
@@ -559,6 +1092,7 @@
             window.scrollTo({ top: targetPosition, behavior: 'smooth' });
         }
 
+        // Hook nav links
         navLinks.forEach(link => {
             link.addEventListener('click', function(event) {
                 event.preventDefault();
@@ -566,6 +1100,33 @@
                 scrollToSection(hash);
                 history.pushState(null, '', hash);
             });
+        });
+
+        // Hook selector buttons
+        selectorButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const art = this.dataset.article;
+                setArticle(art);
+                // mark aria
+                selectorButtons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+                this.setAttribute('aria-pressed', 'true');
+                // scroll to top of page after select
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Initialize with no article selected: hide main content and all article sections
+        const mainContent = document.querySelector('main');
+        if (mainContent) mainContent.style.display = 'none';
+        // hide header and navigation on the initial selector screen
+        if (stickyNav) stickyNav.style.display = 'none';
+        if (headerEl) headerEl.style.display = 'none';
+        const xpIds = ['abstract','figures','citation','authors'];
+        xpIds.forEach(id => {
+            const el = document.getElementById(id);
+            const mel = document.getElementById('m-' + id);
+            if (el) el.style.display = 'none';
+            if (mel) mel.style.display = 'none';
         });
     });
 </script>
